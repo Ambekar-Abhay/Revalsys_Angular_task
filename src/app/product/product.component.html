@@ -1,1 +1,32 @@
-<p>product works!</p>
+
+<div class="container">
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+                <ng-container *ngFor="let data of filter">
+                    <option  selected value="data.id">{{data.name}}</option>
+                </ng-container>
+              
+            </select>
+          </div>
+      </div>
+      <div class="row">
+          <ng-container *ngFor="let product of productDetails;let i =index">
+            <div *ngIf="i+1<=productlength" class="card mr-2mb-2" style="width: 11rem;" (scroll)="scrollHandler($event)" >
+                <img class="card-img-top img-sm" src="{{product.Images}}" alt="{{product.Images}}">
+                <div>
+                  <span class="card-text">Title:{{product.ProductTitle}}</span>
+                  <span class="card-text">collection : {{product.Collection}}</span>
+                  <span class="card-text">Price : {{product.Price}}</span>
+                  <span class="card-text">StyleName : {{product.StyleName}}</span>
+                  <span class="card-text">StyleNumber : {{product.StyleNumber}}</span>
+                  <span class="card-text">NetQuantity : {{product.NetQuantity}}</span>
+                  <span class="card-text">ProductCode : {{product.ProductCode}}</span>
+                  <span class="card-text">AvailableSizes : {{product.AvailableSizes}}</span>
+                  
+                </div>
+              </div>
+          </ng-container>
+    </div>
+    </div>
