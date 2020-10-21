@@ -12,7 +12,7 @@
           </div>
       </div>
       <div class="row">
-          <ng-container *ngFor="let product of productDetails;let i =index">
+          <ng-container *ngFor="let product of productDetails;let i =index;trackBy:productTrackBy">
             <div *ngIf="i+1<=productlength" class="card mr-2 mb-2 mx-auto" style="width: 15rem;" (scroll)="scrollHandler($event)" >
                 <img class="card-img-top img-sm mb-2" src="{{product.Images}}" alt="image not available">
                 <div class="text-align">

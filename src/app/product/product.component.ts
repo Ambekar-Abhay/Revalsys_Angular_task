@@ -102,4 +102,7 @@ export class ProductComponent implements OnInit {
       }
    })
   }
+  productTrackBy(index: number, product: any) {
+    return product.ProductId
+  }
 }
