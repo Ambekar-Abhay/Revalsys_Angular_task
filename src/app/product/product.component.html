@@ -3,7 +3,7 @@
     <div class="row">
         <div class="form-group col-md-4">
             <label for="inputState">State</label>
-            <select id="inputState" class="form-control" (change)="filterChange($event)">
+            <select id="inputState" class="form-control" (change)="filterChange($event)" [(ngModel)]="selectedFilterId">
                 <ng-container *ngFor="let data of filter">
                     <option  [selected]="data.id==1" value="{{data.id}}">{{data.name}}</option>
                 </ng-container>

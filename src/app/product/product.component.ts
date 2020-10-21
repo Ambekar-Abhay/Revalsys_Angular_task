@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-product',
@@ -10,6 +12,8 @@ export class ProductComponent implements OnInit {
   productDetails: any;
   filter=[{"name":'hightolow',"id":1},{"name":'lowtohigh',"id":2}]
   productlength: number=12;
+  param: any;
+  selectedFilterId:number=1
   @HostListener('window:scroll', ['$event']) 
   scrollHandler(event) {
     if(this.productlength==12){
@@ -22,7 +26,9 @@ export class ProductComponent implements OnInit {
       this.productlength=this.productDetails.length
     }
   }
-  constructor(private apiService:ApiService) { }
+  constructor(private apiService:ApiService, private route:ActivatedRoute,private _route:Router) { 
+
+  }
 
   ngOnInit(): void {
     this.getProductData()
@@ -37,10 +43,10 @@ export class ProductComponent implements OnInit {
          var img= x.Images.slice(0,index);
           x.Images=x.ListImagePath+img
         })
-        this.productDetails.sort(this.dynamicSort("Price"));
-        this.productDetails.reverse()
+        this.filterProductbyUrl()
       }
     })
+  
   }
   dynamicSort(property) {
     var sortOrder = 1;
@@ -53,14 +59,47 @@ export class ProductComponent implements OnInit {
       return result * sortOrder;
     }
   }
-  filterChange(event) {
-    const filterId = event.target.value
+  //To filter product data 
+  filterChange(event,id?) {
+    var filterId
+    if(id){
+       filterId=id
+    }else{
+       filterId = event.target.value
+    } 
     if (filterId == 1) {
       this.productDetails.sort(this.dynamicSort("Price"));
       this.productDetails.reverse()
+      this.changeQueryParam('hightolow')
     } else {
       this.productDetails.sort(this.dynamicSort("Price"));
+     this.changeQueryParam('lowtohigh')
+ 
     }
+  }
+  //to Update query param on dropdown filter change
+  changeQueryParam(value){
+    this._route.navigate([],{
+      queryParams: {
+       sortType: value,
+      }
+    })
+  }
+  //Filter product details based on querey param
+  filterProductbyUrl(){
+    this.route.queryParamMap.subscribe(resp=>{
+      this.param = resp['params'];
+      console.log(this.param)
+      if(this.param.sortType=='hightolow'){
+          this.productDetails.sort(this.dynamicSort("Price"));
+          this.productDetails.reverse()
+         this.selectedFilterId=1
+      }
 
+       if(this.param.sortType=='lowtohigh'){
+         this.selectedFilterId=2
+       this.productDetails.sort(this.dynamicSort("Price"));
+      }
+   })
   }
 }
