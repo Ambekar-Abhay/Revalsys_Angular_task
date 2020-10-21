@@ -1,4 +1,10 @@
 .img-sm{
-    width: 86px;
-    height: 57px;
+    width: 130px;
+    height: 137px;
+}
+.text-align{
+    font-size: small;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    line-height: 5px;
 }

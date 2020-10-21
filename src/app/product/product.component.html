@@ -13,17 +13,17 @@
       </div>
       <div class="row">
           <ng-container *ngFor="let product of productDetails;let i =index">
-            <div *ngIf="i+1<=productlength" class="card mr-2mb-2" style="width: 11rem;" (scroll)="scrollHandler($event)" >
-                <img class="card-img-top img-sm" src="{{product.Images}}" alt="{{product.Images}}">
-                <div>
-                  <span class="card-text">Title:{{product.ProductTitle}}</span>
-                  <span class="card-text">collection : {{product.Collection}}</span>
-                  <span class="card-text">Price : <b>{{product.Price}}</b></span>
-                  <span class="card-text">StyleName : {{product.StyleName}}</span>
-                  <span class="card-text">StyleNumber : {{product.StyleNumber}}</span>
-                  <span class="card-text">NetQuantity : {{product.NetQuantity}}</span>
-                  <span class="card-text">ProductCode : {{product.ProductCode}}</span>
-                  <span class="card-text">AvailableSizes : {{product.AvailableSizes}}</span>
+            <div *ngIf="i+1<=productlength" class="card mr-2 mb-2 mx-auto" style="width: 15rem;" (scroll)="scrollHandler($event)" >
+                <img class="card-img-top img-sm mb-2" src="{{product.Images}}" alt="image not available">
+                <div class="text-align">
+                  <p><b>Title:</b>{{product.ProductTitle}}</p>
+                  <p><b>collection : </b>{{product.Collection}}</p>
+                  <p><b>Price : </b>{{product.Price}}</p>
+                  <p><b>StyleName :</b> {{product.StyleName}}</p>
+                  <p><b>StyleNumber :</b> {{product.StyleNumber}}</p>
+                  <p><b>NetQuantity :</b> {{product.NetQuantity}}</p>
+                  <p><b>ProductCode : </b>{{product.ProductCode}}</p>
+                  <p><b>AvailableSizes :</b> {{product.AvailableSizes}}</p>
                   
                 </div>
               </div>
