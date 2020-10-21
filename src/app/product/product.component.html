@@ -3,9 +3,9 @@
     <div class="row">
         <div class="form-group col-md-4">
             <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
+            <select id="inputState" class="form-control" (change)="filterChange($event)">
                 <ng-container *ngFor="let data of filter">
-                    <option  selected value="data.id">{{data.name}}</option>
+                    <option  [selected]="data.id==1" value="{{data.id}}">{{data.name}}</option>
                 </ng-container>
               
             </select>
@@ -18,7 +18,7 @@
                 <div>
                   <span class="card-text">Title:{{product.ProductTitle}}</span>
                   <span class="card-text">collection : {{product.Collection}}</span>
-                  <span class="card-text">Price : {{product.Price}}</span>
+                  <span class="card-text">Price : <b>{{product.Price}}</b></span>
                   <span class="card-text">StyleName : {{product.StyleName}}</span>
                   <span class="card-text">StyleNumber : {{product.StyleNumber}}</span>
                   <span class="card-text">NetQuantity : {{product.NetQuantity}}</span>

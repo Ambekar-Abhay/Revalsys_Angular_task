@@ -37,12 +37,30 @@ export class ProductComponent implements OnInit {
          var img= x.Images.slice(0,index);
           x.Images=x.ListImagePath+img
         })
+        this.productDetails.sort(this.dynamicSort("Price"));
+        this.productDetails.reverse()
       }
     })
   }
-  // scrollHandler(event){
-  //   alert("welcometo scroll event")
+  dynamicSort(property) {
+    var sortOrder = 1;
+    if (property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
+    }
+    return function (a, b) {
+      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
+    }
+  }
+  filterChange(event) {
+    const filterId = event.target.value
+    if (filterId == 1) {
+      this.productDetails.sort(this.dynamicSort("Price"));
+      this.productDetails.reverse()
+    } else {
+      this.productDetails.sort(this.dynamicSort("Price"));
+    }
 
-  // }
-
+  }
 }
