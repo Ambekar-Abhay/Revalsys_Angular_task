@@ -13,7 +13,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
   logout(){
+    //clearing user data
     sessionStorage.removeItem('loggedInUserDetails')
+    sessionStorage.removeItem('feedbackDetails')
     this.route.navigate(['/login'])
   }
 
