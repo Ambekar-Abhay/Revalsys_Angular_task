@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
   login(){
     const userObj= JSON.stringify(this.loginForm.value)
-  this.route.navigate(['/dashboard/products'])
+    sessionStorage.setItem('loggedInUserDetails',userObj)
+  this.route.navigate(['/dashboard/products'],{queryParams:{sortType:'hightolow'}})
   }
 }
